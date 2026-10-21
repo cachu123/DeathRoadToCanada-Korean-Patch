@@ -1,105 +1,102 @@
-﻿Death Road to Canada 비공식 한글패치 설치 방법
+Death Road to Canada 비공식 한글패치 설치 방법
 ==================================================
 
-※ 이 패치는 Windows용 Steam 정품 Death Road to Canada를 대상으로 합니다.
-※ 지원하는 게임 파일 빌드가 정해져 있습니다. 게임 업데이트 후 설치가 안 될 수 있습니다.
-※ 게임 폴더를 수정하기 전에 게임을 완전히 종료하세요.
+이 안내문은 Windows용 Steam 정품 Death Road to Canada를 기준으로 합니다.
+지원 게임 빌드: 24936165
+게임 업데이트 후에는 설치가 안 될 수 있습니다. 설치 전 게임을 완전히 종료하세요.
 
 [1. 준비물]
 
 1) Steam 정품 Death Road to Canada
 2) Windows용 Python 3.10 이상
-   https://www.python.org/downloads/windows/
+   다운로드: https://www.python.org/downloads/windows/
    설치 첫 화면에서 'Add python.exe to PATH'를 체크한 뒤 설치하세요.
-3) 이 저장소의 한글패치 소스 파일
-   GitHub 저장소에서 초록색 Code 버튼 → Download ZIP을 누르고 압축을 풉니다.
-   예: C:\DRTC-KO
+3) DRTC-Korean-Patch-main.zip
+   한글패치 GitHub 저장소에서 Code → Download ZIP을 눌러 받은 뒤 압축을 푸세요.
    압축을 푼 폴더 안에 install.py, uninstall.py, requirements.txt가 보여야 합니다.
-4) 호환되는 Mod Loader V202.0
+   예: C:\DRTC-KO\DRTC-Korean-Patch-main
+4) Mod Loader V202.0
    배포 페이지: https://arkwright1.blog.fc2.com/blog-entry-1576.html
-   안내 페이지에서 V202.0을 받아 압축을 풀어 주세요.
-   게임 폴더 안이 아닌 별도 위치에 두세요. 예: C:\DRTC-Loader.MOD LOADER
-   이 폴더를 열었을 때 dr2c-gadget.dll과 mods 폴더가 바로 보여야 합니다.
+   직접 다운로드해서 압축을 푸세요. 제3자 제작자의 파일이므로 한글패치와 함께 재배포하지 마세요.
+   로더는 게임 폴더 바깥에 두세요. 예: C:\DRTC-Loader\1.MOD LOADER
+   지정할 로더 폴더를 열었을 때 dr2c-gadget.dll 파일과 mods 폴더가 바로 보여야 합니다.
+   배포본에 prog_Patch.exe가 있다면 직접 실행하지 마세요.
 
-주의: Mod Loader 및 제3자 모드 파일은 별도 제작자의 배포물입니다. 공개 저장소에
-무단으로 재업로드하지 말고, 위 배포 페이지에서 사용자가 직접 받도록 안내하세요.
-
-[2. 게임 폴더 확인]
+[2. 게임 폴더 찾기]
 
 1) Steam 라이브러리에서 Death Road to Canada를 마우스 오른쪽 클릭합니다.
 2) 관리 → 로컬 파일 보기를 누릅니다.
 3) 열린 폴더에 prog.exe가 바로 들어 있는지 확인합니다. 그 폴더가 게임 폴더입니다.
-   예: C:\Program Files (x86)\Steam\steamapps\common\Death Road to Canada
-   Steam 라이브러리를 다른 드라이브에 설치했다면 실제로 열린 경로를 사용하세요.
+   예시 경로는 아래와 같지만, 반드시 본인 PC에서 실제로 열린 경로를 사용하세요.
+   C:\Program Files (x86)\Steam\steamapps\common\Death Road to Canada
 
 [3. PowerShell 열기]
 
-1) 파일 탐색기에서 한글패치 폴더(install.py가 보이는 폴더)를 엽니다.
+1) install.py가 보이는 한글패치 폴더를 파일 탐색기로 엽니다.
 2) 탐색기 위쪽 주소창을 클릭하고 powershell이라고 입력한 뒤 Enter를 누릅니다.
-3) 열린 PowerShell 창에서 아래 명령어를 실행합니다.
+3) 열린 PowerShell 창에 아래 명령어를 하나씩 붙여넣어 실행합니다.
 
 [4. 필요한 Python 패키지 설치 — 처음 한 번]
 
 python -m pip install -r requirements.txt
 
-오류 없이 설치가 끝나면 다음 단계로 진행합니다.
+설치가 끝나면 다음 단계로 진행합니다. 'python'을 찾을 수 없다는 오류가 나오면
+Python 설치 때 'Add python.exe to PATH'를 체크했는지 확인하세요.
 
-[5. 먼저 검사하기 — 게임 파일은 변경되지 않음]
+[5. 설치 전 검사 — 게임 파일은 변경되지 않음]
 
-아래 명령어에서 게임 폴더 경로와 로더 폴더 경로를 실제 경로로 바꿔 실행하세요.
-경로 양쪽의 큰따옴표는 그대로 두세요.
+아래 명령어 예시에서 게임 경로와 로더 경로를 실제 경로로 바꿔 주세요.
+큰따옴표는 유지해야 합니다. 아래 경로는 예시입니다.
 
-예시:
-python install.py --game-root "C:\Program Files (x86)\Steam\steamapps\common\Death Road to Canada" --loader-root "C:\DRTC-Loader.MOD LOADER" --check
+python install.py --game-root "C:\Program Files (x86)\Steam\steamapps\common\Death Road to Canada" --loader-root "C:\DRTC-Loader\1.MOD LOADER" --check
 
-검사가 성공하고 ERROR가 표시되지 않으면 다음 단계로 넘어갑니다.
-ERROR가 표시되면 설치를 진행하지 말고 오류 메시지를 확인하세요.
+검사가 성공하고 ERROR가 표시되지 않으면 실제 설치를 진행합니다.
+ERROR가 표시되면 설치하지 말고 오류 메시지부터 확인하세요.
 
-[6. 한글패치 실제 설치]
+[6. 한글패치 설치]
 
-5번 명령어의 맨 끝 --check를 --apply로 바꿔 다시 실행합니다.
+5번에서 사용한 명령어의 맨 끝 --check를 --apply로 바꿔 실행합니다.
 
-예시:
-python install.py --game-root "C:\Program Files (x86)\Steam\steamapps\common\Death Road to Canada" --loader-root "C:\DRTC-Loader.MOD LOADER" --apply
+python install.py --game-root "C:\Program Files (x86)\Steam\steamapps\common\Death Road to Canada" --loader-root "C:\DRTC-Loader\1.MOD LOADER" --apply
 
-설치 프로그램은 게임 폴더를 백업한 뒤 패치를 적용합니다. 백업 폴더는 게임 폴더 옆에
-Death Road to Canada_KO_backup_날짜 같은 이름으로 만들어집니다.
-백업 폴더와 설치 기록 파일은 문제 해결 및 복구에 필요하므로 삭제하지 마세요.
-설치가 끝나면 Steam에서 평소처럼 게임을 실행합니다.
+게임 경로와 로더 경로는 꼭 본인 PC에 맞게 바꿔야 합니다.
+설치 프로그램은 먼저 게임 폴더를 백업한 다음 한글패치를 적용합니다.
+백업 폴더는 일반적으로 게임 폴더 옆에 Death Road to Canada_KO_backup_날짜 형식으로 만들어집니다.
+백업 폴더와 설치 기록 파일은 문제 해결에 필요하므로 바로 삭제하지 마세요.
+설치가 끝나면 Steam에서 평소처럼 게임을 실행하세요.
 
-[7. 한글패치 제거하기]
+[7. 한글패치 제거]
 
-게임을 완전히 종료하고, 3번과 같은 방법으로 한글패치 폴더에서 PowerShell을 엽니다.
+게임을 완전히 종료한 뒤 한글패치 폴더에서 PowerShell을 엽니다.
+아래 명령어의 '게임 폴더'를 실제 경로로 바꾸고 큰따옴표를 유지하세요.
 
-먼저 제거 가능 여부를 검사합니다(게임 파일을 변경하지 않음).
-python uninstall.py --game-root "게임 폴더의 실제 경로" --check
+먼저 제거 전 검사:
+python uninstall.py --game-root "게임 폴더" --check
 
-검사가 성공하면 실제 제거 명령어를 실행합니다.
-python uninstall.py --game-root "게임 폴더의 실제 경로" --apply
+검사가 성공하면 실제 제거:
+python uninstall.py --game-root "게임 폴더" --apply
 
-위 두 명령어의 '게임 폴더의 실제 경로'를 실제 경로로 바꾸고 큰따옴표를 유지하세요.
-제거 후 게임이 정상적으로 영어로 실행되는지 확인한 다음 백업을 정리하세요.
+제거 후 게임이 정상적으로 실행되는지 확인한 뒤, 문제가 없을 때 백업을 정리하세요.
 
 [8. 자주 발생하는 오류]
 
-• 'python'을 찾을 수 없음: Python 설치 때 Add python.exe to PATH를 체크했는지 확인하세요.
-• 'No module named polib' 또는 'PIL': 4번 명령어를 다시 실행하세요.
-• 'game root must be the folder containing prog.exe': 게임 폴더 경로가 잘못된 것입니다.
-• 'Loader SHA-256 mismatch or missing file': 로더 버전이 맞는지, 지정한 폴더 바로 안에
-  dr2c-gadget.dll과 mods 폴더가 있는지 확인하세요. 이 패치는 호환되는 V202.0을 요구합니다.
-• 'Unsupported prog.exe SHA-256' 또는 'Unsupported/modified English script': 게임 업데이트,
-  변경된 게임 파일 또는 다른 모드가 원인일 수 있습니다. Steam → 게임 속성 → 설치된 파일 →
-  게임 파일 무결성 검사로 원본 게임 파일을 복구한 뒤, 패치 지원 버전인지 확인하세요.
+• 'python'을 찾을 수 없음: Python 설치 시 Add python.exe to PATH 옵션을 확인하세요.
+• 'No module named polib' 또는 'PIL': 4번의 패키지 설치 명령을 다시 실행하세요.
+• 'game root must be the folder containing prog.exe': 게임 폴더 경로가 잘못됐습니다.
+• 'Loader SHA-256 mismatch or missing file': 로더가 호환 버전인지 확인하고,
+  --loader-root 경로 바로 안에 dr2c-gadget.dll과 mods 폴더가 있는지 확인하세요.
+  이 패치는 호환되는 Mod Loader V202.0을 요구합니다.
+• 'Unsupported prog.exe SHA-256' 또는 'Unsupported/modified English script':
+  게임 빌드가 지원 버전과 다르거나 게임 파일이 수정되었을 수 있습니다.
+  Steam → 게임 속성 → 설치된 파일 → 게임 파일 무결성 검사를 실행한 뒤 다시 확인하세요.
 • 게임이 실행 중이라는 오류: 게임을 완전히 종료한 뒤 다시 검사하세요.
 
-[9. GitHub에 공개할 때의 주의사항]
+[9. GitHub에 올릴 때 주의사항]
 
-공개 저장소에는 먼저 직접 작성한 설치/제거 도구와 설명서 등 공개 권한을 확인할 수 있는 파일만
-올리는 것이 안전합니다. 게임 대사·메뉴를 번역한 파일도 2차적 저작물 관련 문제가 생길 수 있으므로,
-번역 파일을 공개하기 전에는 권리와 배포 조건을 별도로 확인하세요.
-게임 원본 파일, prog.exe, 게임 백업, 설치 결과물, 설치 기록 파일, 제3자 Mod Loader 및
-일본어 모드 파일은 그대로 올리거나 재배포하지 마세요. 제3자 모드 배포 페이지에 재배포 금지
-안내가 있으므로 사용자가 직접 해당 배포 페이지에서 받도록 안내해야 합니다.
+게임 원본 파일, prog.exe, 게임 백업, 설치 결과물, 설치 기록 파일,
+제3자 Mod Loader 및 일본어 모드 파일을 공개 저장소에 올리거나 재배포하지 마세요.
+번역 데이터 등 저작권 문제가 생길 수 있는 파일도 배포 권한과 조건을 확인한 뒤 공개하세요.
+공개하기 전에 프로젝트 안의 README.md와 THIRD_PARTY_NOTICES.md도 확인하세요.
 
-이 패치는 비공식 팬패치이며 게임 제작사와 관련이 없습니다. 사용 전 게임과 패치 파일을 백업하고,
-게임 업데이트로 패치가 작동하지 않을 수 있다는 점을 유의하세요.
+이 패치는 비공식 팬패치이며 게임 제작사와 관련이 없습니다.
+사용 전 게임 파일을 백업하고, 게임 업데이트로 패치가 작동하지 않을 수 있음을 유의하세요.
